@@ -5,7 +5,9 @@ twitterbot in PHP
 
 Require
 --------
-Regex.php on [twitter-text-php](https://github.com/mzsanford/twitter-text-php)
+- Regex.php on [twitter-text-php](https://github.com/mzsanford/twitter-text-php)
+- EConfig.php by [anatoo][econfig]
+[econfig]: http://d.hatena.ne.jp/anatoo/comment/20080120/1200814827
 
 Features
 --------
