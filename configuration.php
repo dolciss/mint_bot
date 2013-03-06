@@ -1,0 +1,1 @@
+/home/forte/bot/configuration.php

@@ -1,0 +1,1 @@
+/home/forte/bot/mint_bot.php

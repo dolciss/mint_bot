@@ -1,4 +1,4 @@
-mint_bot
+mint\_bot
 ========
 
 twitterbot in PHP
@@ -10,7 +10,9 @@ Regex.php on [twitter-text-php](https://github.com/mzsanford/twitter-text-php)
 Features
 --------
 ###twitterbot
-Reply timeline
+- Reply timeline
+- Follow/Follower check
+- Profile image change
 
 ###NicoNicoAlert
 Tweet on Nicolive start, Niconico post powerd by [niconico][nicoalert]
@@ -21,10 +23,10 @@ Tweet on Niconico post powerd by [niconico RSS](http://www.nicovideo.jp/rss)
 
 TargetAccount
 --------
-- [はっかうさぎ @Mint_bot](https://twitter.com/Mint_bot)
-- [あんずにゃん @Apricat_bot](https://twitter.com/Apricat_bot)
-- [えるたん @L_tan](https://twitter.com/L_tan) *It's me!*
-- [TAIZO_bot @TAIZOO_bot](https://twitter.com/TAIZOO_bot)
+- [はっかうさぎ @Mint\_bot](https://twitter.com/Mint_bot)
+- [あんずにゃん @Apricat\_bot](https://twitter.com/Apricat_bot)
+- [えるたん @L\_tan](https://twitter.com/L_tan) *It's me!*
+- [TAIZO\_bot @TAIZOO\_bot](https://twitter.com/TAIZOO_bot)
 
 License
 --------
