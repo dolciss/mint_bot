@@ -6,8 +6,12 @@ twitterbot in PHP
 Require
 --------
 - Regex.php on [twitter-text-php](https://github.com/mzsanford/twitter-text-php)
-- EConfig.php by [anatoo][econfig]
+- EConfig.php and EConfig2.php by [anatoo][econfig]
 [econfig]: http://d.hatena.ne.jp/anatoo/comment/20080120/1200814827
+
+###PEAR
+- [HTTP\_Request2](http://pear.php.net/package/HTTP_Request2)
+- [HTTP\_OAuth](http://pear.php.net/package/HTTP_OAuth/)
 
 Features
 --------
