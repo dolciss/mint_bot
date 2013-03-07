@@ -13,6 +13,7 @@ $livelist = array(
 			"lv128256092", //03/16 appleseed
 			"lv127001519", //03/17 lovelive
 			"lv127120882", //03/17 seiken
+			"lv127123388", //03/20 oniai
 			"lv122949910", //03/23 railgun1
 			"lv122949997", //03/24 railgun2
 			"lv200000000",
@@ -34,6 +35,7 @@ $commlist = array(
 			// Vocaloid
 			"ch41",		// GINGA
 			"ch189",	// ちゃんねるMOER
+			"ch253",	// SEGA feat. HATSUNE MIKU ちゃんねる
 			// taizoo
 			"co1031128",// 77net～ニコニコ支部(原宿)～
 			);
