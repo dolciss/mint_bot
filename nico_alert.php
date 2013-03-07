@@ -3,9 +3,11 @@
 // ニコニコアラート
 
 require_once("HTTP/Request2.php");
-require_once("Secret.php");
 require_once("Twitter.php");
 require_once("Nicovideo.php");
+
+// defined NICONICO_MAIL, NICONICO_PASS
+require_once("Secret.php");
 
 define("USER_AGENT", "NicoAlert2Twitter/1.1 (by @L_tan)");
 $mail = NICONICO_MAIL;

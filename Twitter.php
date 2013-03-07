@@ -4,9 +4,11 @@
 
 require_once("HTTP/OAuth/Consumer.php");
 require_once("HTTP/Request2/Adapter/Curl.php");
-require_once("Secret.php");
 require_once("Regex.php");
 require_once("EConfig.php");
+
+// defined CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_SECRET
+require_once("Secret.php");
 
 mb_internal_encoding("UTF-8");
 
