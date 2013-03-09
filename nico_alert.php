@@ -352,7 +352,7 @@ function live_start($liveid, $commid, $userid)
 		if(preg_match("/(放送者|提供)[:：](\s|<.*?>)*(.*?)([\)）]|<.*?>)+/u",
 			$ret, $match) === 1){
 			$owner_name = htmlspecialchars_decode($match[3]);
-		} else if($hit == "offi"){
+		} else if($commid === "official"){
 			$owner_name = "公式";
 		} else {
 			$owner_name = "？？？";
