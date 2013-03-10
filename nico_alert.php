@@ -341,7 +341,7 @@ function live_start($liveid, $commid, $userid)
 	$ret = file_get_contents("http://live.nicovideo.jp/watch/lv".$liveid);
 	if(preg_match("/og:title\" content=\"(.*?)\"/u", $ret, $match) === 1){
 		print("lv".$liveid." Title:WatchPage".PHP_EOL);
-		$title = htmlspecialchars_decode($match[1]);
+		$title = htmlspecialchars_decode($match[1], ENT_QUOTES);
 	} else {
 		if($title == ""){
 			print("lv".$liveid." WatchPage Failed...".PHP_EOL);

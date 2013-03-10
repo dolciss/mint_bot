@@ -447,6 +447,7 @@ function trim_name($screen_name, $name)
 	$namelist = array(
 					"kuhma_sohju" => "すみませんP（KuhmaSohju）",
 					"GOTS_FRUIT_P" => "フルーツ(笑)P",
+					"tomatoufu" => "トマ豆腐さん",
 					);
 	if(isset($namelist[$screen_name])){
 		return $namelist[$screen_name];
