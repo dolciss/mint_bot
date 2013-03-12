@@ -464,6 +464,9 @@ function video_post($mediid, $userid)
 		} else {
 			print($mediid." WatchPage Failed...".PHP_EOL);
 		}
+		if(preg_match("/vinfo_length\"><span>(.*?)</", $ret, $match) === 1){
+			$time = "(".$match[1].")";
+		}
 	}
 	if($title == ""){
 		$ret = file_get_contents("http://i.nicovideo.jp/v3/video.array?v=".$mediid);
