@@ -13,6 +13,8 @@ $livelist = array(
 			"lv128256092", //03/16 appleseed
 			"lv127001519", //03/17 lovelive
 			"lv127120882", //03/17 seiken
+			"lv127010093", //03/18 dc3
+			"lv127625236", //03/19 anisama
 			"lv127123388", //03/20 oniai
 			"lv122949910", //03/23 railgun1
 			"lv122949997", //03/24 railgun2
