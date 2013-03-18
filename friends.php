@@ -49,7 +49,7 @@ if($follow&&$follower){
 	
 	$remove = array_diff($follow->ids, $follower->ids);
 	foreach($remove as $user){
-		$twitter->friendships->destroy(array("user_id"=>$user));
+		friendships_destroy($mint_bot_m, array("user_id" => $user));
 	}
 }
 
