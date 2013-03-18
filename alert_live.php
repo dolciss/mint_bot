@@ -21,6 +21,8 @@ $livelist = array(
 			"lv128257364", //03/27 exmachina
 			"lv128961169", //03/28 db
 			"lv129934849", //03/30 oreimo
+			"lv129960151", //04/13 steinsgate1
+			"lv129960755", //04/14 steinsgate2
 			"lv200000000",
 			);
 $commlist = array(
