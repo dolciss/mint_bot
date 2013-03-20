@@ -521,7 +521,7 @@ function keyword($json)
 		$message = "＼やめて！／";
 	} else if(preg_match("/[ｼシ][ｭュ][ウゥーｳｩｰ]{2,}[ｯッ]*[!！]/u", $text) === 1){
 		$message = "＼超エキサイティンッ！／";
-	} else if((preg_match("/じゃあ?、?いつ.*?[かの][\?？]$/", $text) === 1)
+	} else if((preg_match("/じゃあ?、?いつ.*?[かの][\?？]$/u", $text) === 1)
 				&&(strpos($text, "でしょ") === false)){
 		$message = "＼今でしょ！／";
 	} else if(preg_match("/^(.+?)(は|を|って)(.*?)(で|だと|)(いくつ|いくら|計算)(だっけ|なの|ですか|して|すると)?？$/u"
