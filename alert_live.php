@@ -20,11 +20,14 @@ $livelist = array(
 			"lv128961019", //03/24 db
 			"lv130593967", //03/26 sasami
 			"lv128257364", //03/27 exmachina
+			"lv130595218", //03/27 killme
 			"lv128961169", //03/28 db
 			"lv129934849", //03/30 oreimo
+			"lv128387596", // 03/31 這いよれニャル子さん
 			"lv130591613", //04/12 jintai
 			"lv129960151", //04/13 steinsgate1
 			"lv129960755", //04/14 steinsgate2
+// animesp_check
 			"lv200000000",
 			);
 $commlist = array(
