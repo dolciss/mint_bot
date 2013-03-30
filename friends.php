@@ -34,12 +34,12 @@ if($follow&&$follower){
 					continue;
 				}
 				print("☆New Follower:@".$user->screen_name.PHP_EOL);
+				$arg = array("user_id" => $user->id);
 				if($user->statuses_count === 0){
 					print("Tweet Count:".$user->statuses_count." === 0".PHP_EOL);
-					users_report_spam($mint_bot_m, $user->id);
+					users_report_spam($mint_bot_m, $arg);
 					continue;
 				}
-				$arg = array("user_id" => $user->id);
 				friendships_create($mint_bot_m, $arg);
 				$message = "@".$user->screen_name." さんフォローありがとう！";
 				statuses_update($mint_bot_m, $message);
