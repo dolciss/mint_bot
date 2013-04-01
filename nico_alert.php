@@ -366,7 +366,6 @@ function live_start($liveid, $commid, $userid)
 		}
 	}
 	if(($hit == "offi")
-		&&(strpos($ret, "ＡＣＥステージ中継") === FALSE)
 		&&(strpos($ret, "アニメ上映会") === FALSE)){
 		print("lv".$liveid." Not Anime Official...".PHP_EOL);
 	} else {
