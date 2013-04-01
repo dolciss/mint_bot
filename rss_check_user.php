@@ -69,7 +69,7 @@ foreach($list_array as $name => $id){
 	}
 	$url = "http://www.nicovideo.jp/mylist/".$id."?rss=atom&sort=6";
 	if(($ret = file_get_contents($url)) === false){
-		break;
+		continue;
 	}
 	if(($xml = simplexml_load_string($ret)) === false){
 		continue;

@@ -82,7 +82,7 @@ $check_count = 0;
 foreach($list_array as $id => $name){
 	$url = "http://ch.nicovideo.jp/".$id."/video?sort=f&order=d&rss=2.0";
 	if(($ret = file_get_contents($url)) === false){
-		break;
+		continue;
 	}
 	if(($xml = simplexml_load_string($ret)) === false){
 		continue;
