@@ -460,15 +460,13 @@ function timeline($json)
 					}
 				} else if(strpos($text, "#嘘") !== false){
 					$message = "嘘だっ！";
-				} else {
-					break;
 				}
-				$message .= " QT @".$screen_name.": ".$text;
-				return array($message, 0);
 				break;
 			default: break;
 		}
-		$message = keyword($json);
+		if($message === false){
+			$message = keyword($json);
+		}
 	}
 
 	if($message !== false){
