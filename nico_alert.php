@@ -42,7 +42,7 @@ if(!is_resource($socket)){
 	exit();
 }
 socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO
-					, array("sec"=>1200, "usec"=>0));
+					, array("sec"=>300, "usec"=>0));
 $ip = gethostbyname($status["addr"]);
 $po = intval($status["port"]);
 if(($ret = socket_connect($socket, $ip, $po)) === false){
