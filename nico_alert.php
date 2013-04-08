@@ -349,7 +349,14 @@ function live_start($liveid, $commid, $userid)
 		}
 	}
 	if($owner_name == ""){
-		if(preg_match("/(放送者|提供)[:：](\s|<.*?>)*(.*?)([\)）]|<.*?>)+/u",
+		/*
+		// ログイン時しか使えなさそう(´･ω･`)
+		if(preg_match("/class=\"company\"\s*title=\"(.*?)\"/u",
+			$ret, $match) === 1){
+			$owner_name = htmlspecialchars_decode($match[1]);
+		} else
+		*/
+		if(preg_match("/(放送者|提供)[:：](\s|<.*?>)*(.*?)(<.*?>)+/u",
 			$ret, $match) === 1){
 			$owner_name = htmlspecialchars_decode($match[3]);
 		} else if($commid === "official"){
