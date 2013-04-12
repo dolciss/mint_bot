@@ -11,6 +11,7 @@ $livelist = array(
 			"lv130591613", //04/12 jintai
 			"lv129960151", //04/13 steinsgate1
 			"lv129960755", //04/14 steinsgate2
+			"lv133810312", // 04/19 直球表題ロボットアニメ
 			"lv130996081", // 04/23 戦勇。
 // animesp_check
 			"lv200000000",
