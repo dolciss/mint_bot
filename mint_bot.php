@@ -554,6 +554,14 @@ function keyword($json)
 		$message = "Σｄ（ﾟ∀ﾟｄ）ｱｸﾆｬｰﾝ!!";
 	} else if(strpos($text, "あくにゃん") !== false){
 		$message = "Σｄ（ﾟ∀ﾟｄ）ｱｸﾆｬｰﾝ!!";
+	} else if(strpos($text, "ﾗｲﾖｸﾆｬｰﾝ") !== false){
+		if($json->user->screen_name !== "twhyacinth88"){
+			$message = "Σｄ（ﾟ∀ﾟｄ）ﾗｲﾖｸﾆｬｰﾝ!!";
+		}
+	} else if(strpos($text, "雷翼") !== false){
+		if($json->user->screen_name !== "twhyacinth88"){
+			$message = "Σｄ（ﾟ∀ﾟｄ）ﾗｲﾖｸﾆｬｰﾝ!!";
+		}
 	} else if(strpos($text, "おっぱい") !== false){
 		switch(rand(0,8)){
 			case 0:
