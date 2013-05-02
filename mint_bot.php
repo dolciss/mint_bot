@@ -485,6 +485,10 @@ function today_is($timestamp){
 		case "02/03": $ret="節分です！"; break;
 		case "02/11": $ret="建国記念の日です！"; break;
 		case "02/14": $ret="バレンタインデー・・・ですね///"; break;
+		case "04/29": $ret="昭和の日です！"; break;
+		case "05/03": $ret="憲法記念日です！"; break;
+		case "05/04": $ret="みどりの日です！"; break;
+		case "05/05": $ret="こどもの日です！"; break;
 		default: break;
 	}
 	return $ret;
@@ -621,6 +625,7 @@ function konjac() {
 		case 7: $message .= "制汗スプレー"; break;
 		case 8: $message .= "塩飴"; break;
 		default:$message .= "合羽"; break;
+	}
 */
 /*
 		case 4: $message .= "おでん蒟蒻"; break;
