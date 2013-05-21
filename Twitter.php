@@ -186,7 +186,7 @@ function twitter_stream(&$consumer, $resource_url, $arg = array(), $callback)
 			default:
 				break;
 		}
-		usleep($waittime*1000);
+		usleep($waitms*1000);
 		$waitms = $nextwait;
 	}
 }
