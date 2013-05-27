@@ -378,7 +378,7 @@ function live_start($liveid, $commid, $userid)
 		print("lv".$liveid." Not Anime Official...".PHP_EOL);
 	} else {
 		if($hit == "offi"){
-			if(preg_match("/<B>(.*?)<\/b><br>/ui", $ret, $match) === 1){
+			if(preg_match("/<b>([^<]*?)<\/b><BR>/ui", $ret, $match) === 1){
 				print("lv".$liveid." Anime Official Get SubTitle".PHP_EOL);
 				$title .= " ".htmlspecialchars_decode($match[1]);
 			}
