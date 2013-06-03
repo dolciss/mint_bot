@@ -12,6 +12,7 @@ $userlist = array(
 			"ch253" => "初音ミク ―Project DIVA―",
 			"ch41" => "GINGA",
 			"ch765" => "ニコニコアイマスｃｈ“たるき亭”",
+			"ch203" => "Lantisちゃんねる",
 
 			// anime
 			"ch639" => "俺の妹がこんなに可愛いわけがない",
