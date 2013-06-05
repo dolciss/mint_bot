@@ -110,6 +110,10 @@ function reply($json)
 		// QTがあっても反応しない
 		return "QuoteTweet.";
 	}
+	if(strpos($text, "http://") !== false){
+		// URLあるのもたぶん誤爆
+		return "UrlTweet.";
+	}
 	if(strpos($screen_name, "Mint_bot") !== false){
 		// 自分の発言には反応しない
 		return "SelfTweet.";
