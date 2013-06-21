@@ -330,7 +330,11 @@ function help_configuration(&$consumer)
 	$resource_url = "https://api.twitter.com/1.1/help/configuration.json";
 	return twitter_access($consumer, $resource_url, array(), "GET");
 }
-
+function application_rate_limit_status(&$consumer)
+{
+	$resource_url = "https://api.twitter.com/1.1/application/rate_limit_status.json";
+	return twitter_access($comsumer, $resource_url, array(), "GET");
+}
 
 // Url Length Load
 function get_configuration(&$consumer)
