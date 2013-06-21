@@ -15,7 +15,7 @@ $pattern = "/vid\" value=\"(\d+)\">.*?title\" value=\"(.*?)\">.*?open_time\" val
 if(preg_match_all($pattern, $data, $match, PREG_SET_ORDER) > 0){
 	foreach($match as $item){
 		$liveid = "lv".$item[1];
-		$title = $item[2];
+		$title = htmlspecialchars_decode($item[2], ENT_QUOTES);
 		$opentime = $item[3];
 		if($opentime < (time() + 3600)){
 			// past...
@@ -33,12 +33,12 @@ if(preg_match_all($pattern, $data, $match, PREG_SET_ORDER) > 0){
 		}
 		$add .= "\t\t\t\"".$liveid."\", ";
 		$add .= "// ".date("m/d ", $opentime).$short.PHP_EOL;
-		$message = make_message("@L_tan ややっ、 ".$url." に",
+		$message = make_message("ややっ、 ".$url." に",
 								$title,
 								date("(m/d H:i開場)", $opentime),
 								"が追加されたみたい？",
 								"http://nico.ms/".$liveid,
-								"");
+								" @L_tan");
 		statuses_update($mint_bot_m, $message);
 	}
 }
