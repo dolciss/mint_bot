@@ -500,6 +500,8 @@ function today_is($timestamp){
 		case "05/03": $ret="憲法記念日です！"; break;
 		case "05/04": $ret="みどりの日です！"; break;
 		case "05/05": $ret="こどもの日です！"; break;
+		case "07/07": $ret="七夕です！"; break;
+		case "07/15": $ret="海の日です！"; break;
 		default: break;
 	}
 	return $ret;
@@ -628,8 +630,8 @@ function konjac() {
 		case 1: $message .= "蒟蒻ゼリー"; break;
 		case 2: $message .= "熱々蒟蒻"; break;
 		case 3: $message .= "蒟蒻芋"; break;
-*/
-/*
+
+
 		case 4: $message .= "冷水"; break;
 		case 5: $message .= "タオル"; break;
 		case 6: $message .= "帽子"; break;
