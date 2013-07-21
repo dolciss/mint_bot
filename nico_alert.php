@@ -100,14 +100,25 @@ while(1){
 				print(")->".$part[2].PHP_EOL);
 				*/
 				$data = explode(",", $xml);
+				if(((int)$xml["date"] - (int)$data[0]) < 2){
+					print("++++++Fixed Time (xml:");
+					print($xml["date"]." data:".$data[0]."->");
+					print(date("Y/m/d H:i:s", $data[0]));
+					print(")++++++".PHP_EOL);
+					break; // switch($xml->getName())
+				}
 				switch(array_search((string)$xml["thread"], $status["services"])){
 					case "live":
-						if(count($data) < 3){
-							print("++++++ID Not Enough++++++".PHP_EOL);
-							print($part[2].PHP_EOL);
-							print("+++++++++++++++++++++++++".PHP_EOL);
-						} else {
-							live_start($data[0], $data[1], $data[2]);
+						switch(count($data)){
+							case 1:
+								live_start($data[0], "coxxxxxx", "xxxxxxxx");
+								break;
+							case 2:
+								live_start($data[0], $data[1], "xxxxxxxx");
+								break;
+							default:
+								live_start($data[0], $data[1], $data[2]);
+								break;
 						}
 						break;
 					case "video":
@@ -338,15 +349,21 @@ function live_start($liveid, $commid, $userid)
 		print("Exception:".$e->getMessage().PHP_EOL);
 	}
 	
-	$ret = file_get_contents("http://live.nicovideo.jp/watch/lv".$liveid);
+	$ret = file_get_contents("http://live.nicovideo.jp/gate/lv".$liveid);
 	if(preg_match("/og:title\" content=\"(.*?)\"/u", $ret, $match) === 1){
-		print("lv".$liveid." Title:WatchPage".PHP_EOL);
+		print("lv".$liveid." Title:GatePage".PHP_EOL);
 		$title = htmlspecialchars_decode($match[1], ENT_QUOTES);
-	} else {
-		if($title == ""){
-			print("lv".$liveid." WatchPage Failed...".PHP_EOL);
-			$title = "？？？";
+	}
+	if($title == ""){
+		$ret = file_get_contents("http://live.nicovideo.jp/watch/lv".$liveid);
+		if(preg_match("/og:title\" content=\"(.*?)\"/u", $ret, $match) === 1){
+			print("lv".$liveid." Title:WatchPage".PHP_EOL);
+			$title = htmlspecialchars_decode($match[1], ENT_QUOTES);
 		}
+	}
+	if($title == ""){
+		print("lv".$liveid." Gate/WatchPage Failed...".PHP_EOL);
+		$title = "？？？";
 	}
 	if($owner_name == ""){
 		/*
