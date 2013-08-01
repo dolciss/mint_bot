@@ -299,6 +299,9 @@ function live_start($liveid, $commid, $userid)
 		$hit = "offi";
 	} else if (in_array($userid, $userlist)){
 		$hit = "user";
+	} else if(preg_match("/^c[oh]\d+/u", $commid) === 0){
+		// commidに放送タイトルが入ってる場合
+		$hit = "offi";
 	} else {
 		print("nohit.".PHP_EOL);
 		return;
@@ -338,6 +341,9 @@ function live_start($liveid, $commid, $userid)
 			print("lv".$liveid." Title:GetPlayerStatus".PHP_EOL);
 			$title = $xml->stream->title;
 			$owner_name = $xml->stream->owner_name;
+			if((string)$xml->stream->provider_type == "official"){
+				$owner_name = "公式";
+			}
 			$hashtag = $xml->stream->twitter_tag;
 			if(time()+60 < $xml->stream->start_time){
 				$supple = date("(H:i開始)", intval($xml->stream->start_time));
@@ -363,7 +369,11 @@ function live_start($liveid, $commid, $userid)
 	}
 	if($title == ""){
 		print("lv".$liveid." Gate/WatchPage Failed...".PHP_EOL);
-		$title = "？？？";
+		if(($hit == "offi")&&($commid !== "official")){
+			$title = $commid;
+		} else {
+			$title = "？？？";
+		}
 	}
 	if($owner_name == ""){
 		/*
