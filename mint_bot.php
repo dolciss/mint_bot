@@ -587,6 +587,11 @@ function keyword($json)
 		if($json->user->screen_name !== "twhyacinth88"){
 			$message = "Σｄ（ﾟ∀ﾟｄ）ﾗｲﾆｬｰﾝ!!";
 		}
+	} else if((strpos($text, "幼女") !== false)||
+				(strpos($text, "ロリ") !== false)){
+		if($json->user->screen_name === "smith_neko167"){
+			$message = "#スミスさんやっぱり";
+		}
 	} else if(strpos($text, "おっぱい") !== false){
 		switch(rand(0,8)){
 			case 0:
