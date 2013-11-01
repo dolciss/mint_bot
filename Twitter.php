@@ -471,6 +471,7 @@ function trim_name($screen_name, $name)
 			} else if(preg_match("/[PＰ]$/u", $item) == 1){
 				if(preg_match("/ボカロ[PＰ]/u", $item) !== 1){
 					$ret = $item;
+					break;
 				}
 			}
 		}
