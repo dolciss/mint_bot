@@ -86,7 +86,7 @@ foreach($list_array as $name => $id){
 		print("+");
 	}
 	foreach($xml->entry as $entry){
-		$title = htmlspecialchars_decode($entry->title);
+		$title = htmlspecialchars_decode($entry->title, ENT_QUOTES);
 		$smid = basename($entry->link["href"]);
 		if(preg_match("/<strong class=\"nico-info-length\">(.*?)<\/strong>/u",
 						$entry->content, $match) === 1){

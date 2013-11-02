@@ -115,7 +115,7 @@ foreach($list_array as $id => $name){
 		print("+");
 	}
 	foreach($xml->channel->item as $entry){
-		$title = htmlspecialchars_decode($entry->title);
+		$title = htmlspecialchars_decode($entry->title, ENT_QUOTES);
 		$videoid = basename($entry->link);
 		if(preg_match("/<strong class=\"nico-info-length\">(.*?)<\/strong>/u",
 						$entry->content, $match) === 1){
@@ -138,7 +138,7 @@ foreach($list_array as $id => $name){
 			print($smid." FirstRetrieve Zero...".PHP_EOL);
 			break;
 		} else {
-			$title = htmlspecialchars_decode($thumbinfo->thumb->title);
+			$title = htmlspecialchars_decode($thumbinfo->thumb->title, ENT_QUOTES);
 			$smid = $thumbinfo->thumb->video_id;
 			if(isset($thumbinfo->thumb->length)){
 				$time = "(".$thumbinfo->thumb->length.")";
