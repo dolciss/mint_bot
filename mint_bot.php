@@ -547,10 +547,12 @@ function keyword($json)
 	} else if((preg_match("/じゃあ?、?いつ.*?[かの][\?？]$/u", $text) === 1)
 				&&(strpos($text, "でしょ") === false)){
 		$message = "＼今でしょ！／";
+/*
 	} else if(preg_match("/^(.+?)(は|を|って)(.*?)(で|だと|)(いくつ|いくら|計算)(だっけ|なの|ですか|して|すると)?？$/u"
 						, str_replace("@Mint_bot ", "", $text), $match) === 1){
 		$reply = strpos($text, "@Mint_bot");
 		$message = google_calc($match[1], $match[3], $reply);
+*/
 	} else if(preg_match("/(こんにゃく|蒟蒻|コンニャク)/u", $text) === 1){
 		$message = konjac();
 	} else if(preg_match("/(ﾋﾞｸbbﾆｸﾝ！！|びくん|ビクン|ﾋﾞｸﾝ|感じちゃう)/u",
@@ -672,6 +674,7 @@ function konjac() {
 }
 
 // Google電卓
+// iGoogle閉鎖により過去の遺物と化した・・・代替APIはよ
 function google_calc($from, $to, $reply){
 	if(strpos($from,"はっか") !== false){
 		return "・・・ひみつっ！";
