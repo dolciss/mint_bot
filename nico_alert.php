@@ -617,7 +617,7 @@ function seiga_post($mediid, $userid)
 	print("Child Process (".getmypid().") Start.".PHP_EOL);
 
 	$ret = file_get_contents("http://seiga.nicovideo.jp/seiga/".$mediid);
-	if(preg_match("/<title>(.*?) \/ .*? さんのイラスト - ニコニコ静画<\/title>/u",
+	if(preg_match("/<title>(.*?) \/ .*? さんのイラスト/u",
 		 $ret, $match) === 1){
 		 $title = htmlspecialchars_decode($match[1]);
 	} else {
