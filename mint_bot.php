@@ -4,15 +4,30 @@
 
 require_once("Twitter.php");
 
-user_stream($mint_bot_m, array("replies"=>"all"), "mint_stream");
+//user_stream($mint_bot_m, array("replies"=>"all"), "mint_stream");
+user_stream($mint_bot_m, array("delimited"=>"length","replies"=>"all"), "mint_stream");
 status_update($mint_bot_m, "@L_tan UserStream切れた～(´･ω･`)");
 exit();
 
 function mint_stream($data)
 {
 	static $following = array();
-	
-	$json = json_decode(strstr($data, "{"));
+	static $length = 0;
+	static $remdata = "";
+
+	if($length === 0){
+		$length = intval(strstr($data, "\n", TRUE));
+	}
+	$remdata .= $data;
+	if(strlen($remdata) < $length){
+		print("Short data.(".strlen($remdata)."/".$length.")".PHP_EOL);
+		return;
+	} else {
+		print("Enough data.(".strlen($remdata)."/".$length.")".PHP_EOL);
+		$length = 0;
+	}
+
+	$json = json_decode(strstr($remdata, "{"));
 	if(isset($json->text)){
 		print(date("Y/m/d H:i:s", strtotime($json->created_at)).":");
 		print($json->user->name."(@".$json->user->screen_name.")");
@@ -45,8 +60,15 @@ function mint_stream($data)
 		print(" => ".$json->disconnect->reason.PHP_EOL);
 	} else {
 		print("Unprocess Json.".PHP_EOL);
-		print_r($json);
+		if(strpos($remdata, "{\"friends\":[") !== 0){
+			// friends以外は処理できなくても捨てる
+			//print($remdata.PHP_EOL);
+			print("Dismiss Data.".PHP_EOL);
+			$remdata = "";	
+		}
+		return;
 	}
+	$remdata = "";
 	/*
 	if(($pid = pcntl_wait($stat, WNOHANG)) > 0){
 		print("Child Process (".$pid.") Dead.".PHP_EOL);
