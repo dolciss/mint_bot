@@ -85,6 +85,7 @@ $list_array = array(
 				"ch2585820" => "鬼灯の冷徹",
 				"ch2585303" => "魔法戦争",
 				"ch2585573" => "未確認で進行形",
+				"ch2582363" => "ロボットガールズZ",
 				);
 $config = EConfig::getInstance();
 $config->last_rss_ch = time();
