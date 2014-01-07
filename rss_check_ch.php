@@ -19,6 +19,7 @@ $list_array = array(
 				"ch253" => "初音ミク ―Project DIVA―",
 				"ch41" => "GINGA",
 				"ch765" => "ニコニコアイマスｃｈ“たるき亭”",
+				"ch312" => "アニメロチャンネル",
 				"ch60250" => "咲-Saki-阿知賀編 episode of side-A",
 				//2013/01
 				"ch2526034" => "ラブライブ！",
