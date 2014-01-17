@@ -514,7 +514,7 @@ function today_is($timestamp){
 	switch(date("m/d", $timestamp)){
 		case "01/01": $ret="元日です。あけましておめでとうございます！"; break;
 		case "01/07": $ret="七草粥ですね！"; break;
-		case "01/14": $ret="成人の日です！"; break;
+		case "01/12": $ret="成人の日です！"; break; // 2015
 		case "02/03": $ret="節分です！"; break;
 		case "02/11": $ret="建国記念の日です！"; break;
 		case "02/14": $ret="バレンタインデー・・・ですね///"; break;
@@ -527,7 +527,7 @@ function today_is($timestamp){
 		case "07/21": $ret="海の日です！"; break;
 		case "09/15": $ret="敬老の日です！"; break;
 		case "09/23": $ret="秋分の日です！"; break;
-		case "10/14": $ret="体育の日です！"; break;
+		case "10/13": $ret="体育の日です！"; break;
 		case "11/03": $ret="文化の日です！"; break;
 		case "11/23": $ret="勤労感謝の日です！"; break;
 		case "12/23": $ret="天皇誕生日です！"; break;
