@@ -88,6 +88,8 @@ $list_array = array(
 				"ch2585303" => "魔法戦争",
 				"ch2585573" => "未確認で進行形",
 				"ch2582363" => "ロボットガールズZ",
+				//2014/spring
+				"ch2587663" => "メカクシティアクターズ",
 				);
 $config = EConfig::getInstance();
 $config->last_rss_ch = time();
