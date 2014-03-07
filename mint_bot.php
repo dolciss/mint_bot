@@ -132,7 +132,8 @@ function reply($json)
 		// QTがあっても反応しない
 		return "QuoteTweet.";
 	}
-	if(strpos($text, "http://") !== false){
+	if((strpos($text, "http://") !== false)
+		||(strpos($text, "https://") !== false)){
 		// URLあるのもたぶん誤爆
 		return "UrlTweet.";
 	}
