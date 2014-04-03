@@ -369,6 +369,7 @@ function live_start($liveid, $commid, $userid)
 	}
 	if($title == ""){
 		print("lv".$liveid." Gate/WatchPage Failed...".PHP_EOL);
+		file_put_contents("log/lv".$liveid.".log", $ret);
 		if(($hit == "offi")&&($commid !== "official")){
 			$title = $commid;
 		} else {
