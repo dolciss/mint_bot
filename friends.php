@@ -89,6 +89,7 @@ if($follower = followers_ids($mint_bot_l)){
 		}
 		foreach($new as $user){
 			print("☆New Follower:@".$list[$user].PHP_EOL);
+			$config->user_list[$user] = $list[$user];
 		}
 		foreach($remove as $user){
 			if(isset($list[$user])){
