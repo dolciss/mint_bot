@@ -34,6 +34,7 @@ $commlist = array(
 			"ch189",	// ちゃんねるMOER
 			"ch253",	// SEGA feat. HATSUNE MIKU ちゃんねる
 			"ch203",	// Lantisちゃんねる
+			"ch937",	// 響 -HiBiKi- チャンネル
 			// taizoo
 			"co1031128",// 77net～ニコニコ支部(原宿)～
 			);
