@@ -619,8 +619,11 @@ function seiga_post($mediid, $userid)
 
 	$ret = file_get_contents("http://seiga.nicovideo.jp/seiga/".$mediid);
 	if(preg_match("/<title>(.*?) \/ .*? さんのイラスト/u",
-		 $ret, $match) === 1){
-		 $title = htmlspecialchars_decode($match[1]);
+		$ret, $match) === 1){
+		$title = htmlspecialchars_decode($match[1]);
+	} else if(preg_match("/og:title\" content=\"(.*?)\"/u",
+		$ret, $match) === 1){
+		$title = htmlspecialchars_decode($match[1]);
 	} else {
 		print($mediid." Title Not Found...".PHP_EOL);
 		$title = "？？？";
