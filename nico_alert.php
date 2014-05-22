@@ -402,6 +402,7 @@ function live_start($liveid, $commid, $userid)
 	}
 	if(($hit == "offi")
 		&&(strpos($ret, "電波諜報局") === FALSE)
+		&&(strpos($ret, "「ワシスタ」") === FALSE)
 		&&(strpos($ret, "ニコニコアニメチャンネルでは") === FALSE)){
 		print("lv".$liveid." Not Anime Official...".PHP_EOL);
 	} else {
