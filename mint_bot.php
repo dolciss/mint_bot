@@ -248,24 +248,24 @@ function mention($json)
 		switch(rand(0,7)){
 			case 0:  $message .= "あ、ありがとうございますっ♪"; break;
 			case 1:  $message .= "わ、わたしも".$name."さんのこと…";
-					 $message .= "　ってなにいってんのわたしっ///"; break;
+					 $message .= "　ってなにいってんやろっ///"; break;
 			case 2:  $message .= "わーい！"; break;
 			case 3:  $message .= "そ、そんな・・・///"; break;
 			case 4:  $message .= "(*´ェ｀*)"; break;
-			case 5:  $message .= "そんなこと言っちゃってもーｗ";break;
-			case 6:  $message .= "やたっ、わたしもですよー！"; break;
+			case 5:  $message .= "そんなこというてもーｗ";break;
+			case 6:  $message .= "やたっ、わたしもやでー！"; break;
 			default: $message .= "にゃー恥ずかしいセリフ禁止っ///"; break;
 		}
 	} else if(preg_match("/(かわ|可愛)[ゆいぃ]*[ぃいおよすっね!！…]/u", $text) === 1){
 		switch(rand(0,7)){
 			case 0:  $message .= "あ、ありがとう…///"; break;
-			case 1:  $message .= "はわわっ、やめてーｗ"; break;
+			case 1:  $message .= "やめてーやｗ"; break;
 			case 2:  $message .= "またまたぁ、お世辞どうもっｗ"; break;
-			case 3:  $message .= "きゃーっ、かわいいだなんて///"; break;
+			case 3:  $message .= "きゃーっ、かわいいやなんて///"; break;
 			case 4:  $message .= "(〃▽〃)"; break;
-			case 5:  $message .= "き、きこえなーい///"; break;
+			case 5:  $message .= "き、きこえへんでー///"; break;
 			case 6:  $message .= "てへへっ♪"; break;
-			default: $message .= "そ、そんなことないもんっ"; break;
+			default: $message .= "そ、そんなことあらへんしっ"; break;
 		}
 	} else if(preg_match("/(策士|優秀|えらい|すごい)/u", $text) === 1){
 		$message .= "えへへ、ありがとうございますっ";
@@ -278,9 +278,9 @@ function mention($json)
 			case 0:  $message .= "にゃはは///"; break;
 			case 1:  $message .= "うぅー・・・（上目遣い"; break;
 			case 2:  $message .= "(*'ω'*)......んゅ?"; break;
-			case 3:  $message .= "もー、そういうのはですね・・・";
+			case 3:  $message .= "もー、そういうのはやな・・・";
 			         $message .= "（ごにょごにょ"; break;
-			case 4:  $message .= "・・・なにしてるのかなぁ？"; break;
+			case 4:  $message .= "・・・なにしてんのかなぁ？"; break;
 			case 5:  $message .= "やーめーてーｗ"; break;
 			default: $message .= "ひゃうっ！？"; break;
 		}
@@ -300,11 +300,11 @@ function mention($json)
 		switch(rand(0,6)){
 			case 0: $message .= "きゃっ！・・・あぅ///"; break;
 			case 1: $message .= "・・・もーっｗ"; break;
-			case 2: $message .= "なにやってるんですかーっ！ｗ"; break;
+			case 2: $message .= "なにやってんねーんっ！ｗ"; break;
 			case 3: $message .= "←・・・・・・(・ω・。) ｼﾞｰｯ"; break;
 			case 4: $message .= "あっ、やっ、ちょっ・・・とっ・・・"; break;
-			case 5: $message .= "・・・みんな見てますよぅ・・・"; break;
-			default:$message .= "え、えっちなのはいけないとおもいますっ";
+			case 5: $message .= "・・・みんな見てるやん・・・？"; break;
+			default:$message .= "え、えっちなのはあかんで！";
 					break;
 		}
 	} else if(preg_match("/揉[みむん]/u", $text) === 1){
