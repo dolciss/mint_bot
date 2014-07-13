@@ -570,12 +570,10 @@ function keyword($json)
 	} else if((preg_match("/じゃあ?、?いつ.*?[かの][\?？]$/u", $text) === 1)
 				&&(strpos($text, "でしょ") === false)){
 		$message = "＼今でしょ！／";
-/*
-	} else if(preg_match("/^(.+?)(は|を|って)(.*?)(で|だと|)(いくつ|いくら|計算)(だっけ|なの|ですか|して|すると)?？$/u"
+	} else if(preg_match("/^(.+?)(は|を|って)(いくつ|いくら|計算)(だっけ|なの|ですか|して|すると)?？$/u"
 						, str_replace("@Mint_bot ", "", $text), $match) === 1){
 		$reply = strpos($text, "@Mint_bot");
-		$message = google_calc($match[1], $match[3], $reply);
-*/
+		$message = google_calc($match[1], $reply);
 	} else if(preg_match("/(こんにゃく|蒟蒻|コンニャク)/u", $text) === 1){
 		$message = konjac();
 	} else if(preg_match("/(ﾋﾞｸbbﾆｸﾝ！！|びくん|ビクン|ﾋﾞｸﾝ|感じちゃう)/u",
@@ -702,30 +700,36 @@ function konjac() {
 
 // Google電卓
 // iGoogle閉鎖により過去の遺物と化した・・・代替APIはよ
-function google_calc($from, $to, $reply){
+// Googleサジェストで代用することにしました
+function google_calc($from, $reply){
 	if(strpos($from,"はっか") !== false){
 		return "・・・ひみつっ！";
 	}
 
-	if($to !== ""){
-		$exp = trim($from."を".$to."で");
-	} else {
-		$exp = trim($from);
-	}
+	$exp = trim($from);
 	print("Google Calc:".$exp.PHP_EOL);
 	
-	$ret = file_get_contents("http://www.google.co.jp/ig/calculator?oe=utf-8&q="
+	$ret = file_get_contents("http://www.google.com/complete/search?hl=ja&output=toolbar&oe=utf-8&q="
 								.urlencode($exp));
 	$ret = preg_replace("/([a-zA-Z0-9_]+?):/", "\"$1\":", $ret);
-	$dec = json_decode($ret);
-	if($dec->error !== ""){
+	$dec = simplexml_load_string($ret);
+	if(!isset($dec->CompleteSuggestion)){
+		$ans = false;
+	} elseif(!isset($dec->CompleteSuggestion[0])){
+		$ans = false;
+	} elseif(!isset($dec->CompleteSuggestion[0]->suggestion)){
+		$ans = false;
+	} else {
+		$ans = $dec->CompleteSuggestion[0]->suggestion["data"];
+	}
+	if($ans === false){
 		if($reply !== false){
-			return "Google先生曰くエラー".$dec->error."だって(´･ω･`)";
+			return "Google先生返事してくれなかった(´･ω･`)";
 		} else {
 			return false;
 		}
 	}
-	return "Google先生曰く【 ".$dec->lhs." = ".$dec->rhs." 】だって！"
+	return "Google先生曰く第1候補【 ".$exp." = ".$ans." 】だって！"
 			."https://www.google.co.jp/search?q=".urlencode($exp);
 }
 
