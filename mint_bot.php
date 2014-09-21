@@ -451,7 +451,7 @@ function timeline($json)
 		$message .= "いま".date("G:i")."です～";
 		switch(date("G")){
 			case "5":  case "6":  case "7":  case "8":
-				$message .= "今日も1日がんばりましょう～"; break;
+				$message .= "今日も1日がんばるぞいっ！"; break;
 			case "9":  case "10": case "11": case "16":
 			case "17": case "18": case "19": case "20":
 				/*$message .= "いま".date("G:i")."ですよ～";*/ break;
