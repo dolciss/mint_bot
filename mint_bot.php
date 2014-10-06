@@ -570,9 +570,6 @@ function keyword($json)
 	} else if((preg_match("/じゃあ?、?いつ.*?[かの][\?？]$/u", $text) === 1)
 				&&(strpos($text, "でしょ") === false)){
 		$message = "＼今でしょ！／";
-	} else if((preg_match("/(なん|何)でもしますから[!！]/u", $text) === 1)
-				&&(strpos($text, "ん？") === false)){
-		$message = "ん？";
 	} else if(preg_match("/(^|[^0-9])33-4([^0-9]|$)/u", $text) === 1){
 		$message = "なんでや！阪神関係ないやろ！";
 	} else if(preg_match("/^(.+?)(は|を|って)(いくつ|いくら|計算)(だっけ|なの|ですか|して|すると)?？$/u"
