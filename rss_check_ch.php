@@ -181,7 +181,7 @@ foreach($list_array as $id => $name){
 									$time,
 									"が投稿されたようですよ。",
 									"http://nico.ms/".$videoid,
-									"#nico".$id." #".$smid);
+									"#nicoch #".$smid);
 			tweet_message($mint_bot_m, $message, null, 0);
 			nicocache_fetch($videoid);
 		} else {

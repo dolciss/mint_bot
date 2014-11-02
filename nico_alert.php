@@ -387,7 +387,7 @@ function live_start($liveid, $commid, $userid)
 		if(preg_match("/(放送者|提供)[:：](\s|<.*?>)*(.*?)(<.*?>)+/u",
 			$ret, $match) === 1){
 			$owner_name = htmlspecialchars_decode($match[3]);
-		} else if($commid === "official"){
+		} else if($hit === "offi"){
 			$owner_name = "公式";
 		} else {
 			$owner_name = "？？？";
@@ -402,7 +402,7 @@ function live_start($liveid, $commid, $userid)
 	}
 	if(($hit == "offi")
 		&&(strpos($ret, "電波諜報局") === FALSE)
-		&&(strpos($ret, "「ワシスタ」") === FALSE)
+		&&(strpos($ret, "「アイマス」尽くしの") === FALSE)
 		&&(strpos($ret, "ニコニコアニメチャンネルでは") === FALSE)){
 		print("lv".$liveid." Not Anime Official...".PHP_EOL);
 	} else {
@@ -550,7 +550,7 @@ function video_post($mediid, $userid)
 			}
 			$after = "が投稿されたようですよ。";
 			$url = "http://nico.ms/".$videoid;
-			$hashtag = "#nico".$userid." #".$smid;
+			$hashtag = "#nicoch #".$smid;
 			break;
 		default:
 			if($name !== null){
