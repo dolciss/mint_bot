@@ -92,16 +92,19 @@ if($follower = followers_ids($mint_bot_l)){
 			$config->user_list[$user] = $list[$user];
 		}
 		foreach($remove as $user){
+			$message = "D L_tan ★Remove:";
 			if(isset($list[$user])){
-				print("★Remove:@".$list[$user].PHP_EOL);
+				$message .= "@".$list[$user];
 			} else {
-				print("★Remove:".$user."->");
+				$message .= $user."->";
 				if(isset($config->user_list[$user])){
-					print("@".$config->user_list[$user].PHP_EOL);
+					$message .= "@".$config->user_list[$user];
 				} else {
-					print("???".PHP_EOL);
+					$message .= "???";
 				}
 			}
+			statuses_update($mint_bot_l, $message);
+			print($message.PHP_EOL);
 		}
 	}
 	$config->follower = $follower->ids;
