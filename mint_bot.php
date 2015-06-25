@@ -27,7 +27,7 @@ function mint_stream($data)
 		$length = 0;
 	}
 
-	$json = json_decode(strstr($remdata, "{"));
+	$json = json_decode(strstr($remdata, "{"), false, 512, JSON_BIGINT_AS_STRING);
 	if(isset($json->text)){
 		print(date("Y/m/d H:i:s", strtotime($json->created_at)).":");
 		print($json->user->name."(@".$json->user->screen_name.")");

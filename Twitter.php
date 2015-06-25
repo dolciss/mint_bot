@@ -104,7 +104,7 @@ function twitter_access(&$consumer, $resource_url, $arg = array(), $method = "PO
 			print($ret->getHeader("x-rate-limit-limit").":Reset(");
 			print(date("Y/m/d H:i:s", $ret->getHeader("x-rate-limit-reset")).")".PHP_EOL);
 		}
-		$result = json_decode($ret->getBody());
+		$result = json_decode($ret->getBody(), false, 512, JSON_BIGINT_AS_STRING);
 		if($result === NULL){
 			print("Twitter API Not Result Error. ".$result->error.PHP_EOL);
 			return false;
