@@ -8,10 +8,14 @@ if(idate("H") !== 0){
 	//0時のみ発動
 	exit("not midnight".PHP_EOL);
 }
-$image = "/home/forte/bot/image/".date("D").".png";
+/*
+$rand = date("D");
+*/
+$rand = rand(1, 48);
+$image = "/home/forte/bot/image/".$rand.".png";
 $data = file_get_contents($image);
 if(account_update_profile_image($mint_bot_l ,base64_encode($data))){
-	print(date("D").". profile image updated.".PHP_EOL);
+	print($rand." profile image updated.".PHP_EOL);
 }
 
 ?>
