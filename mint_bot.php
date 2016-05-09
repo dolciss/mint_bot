@@ -620,8 +620,10 @@ function keyword($json)
 		}
 	} else if((strpos($text, "幼女") !== false)||
 				(strpos($text, "ロリ") !== false)){
-		if($json->user->screen_name === "smith_neko167"){
-			$message = "#スミスさんやっぱり";
+		if(strpos($text, "ボカロリ") === false) {
+			if($json->user->screen_name === "smith_neko167"){
+				$message = "#スミスさんやっぱり";
+			}
 		}
 	} else if(strpos($text, "おっぱい") !== false){
 		switch(rand(0,8)){
