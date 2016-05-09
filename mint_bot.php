@@ -142,7 +142,7 @@ function reply($json)
 		return "SelfTweet.";
 	}
 	// bot発言も反応しない
-	$botter = array("twiroboJP", "twittbot.net");
+	$botter = array("twiroboJP", "twittbot.net", "autotweety.net");
 	foreach($botter as $b){
 		if(strpos($json->source, $b) !== false){
 			return "Bot Tweet.";
