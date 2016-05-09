@@ -367,6 +367,9 @@ function live_start($liveid, $commid, $userid)
 			$title = htmlspecialchars_decode($match[1], ENT_QUOTES);
 		}
 	}
+	if(preg_match("/provider_type: \"official\"/", $ret) === 1){
+		$hit = "offi"; $owner_name = "公式";
+	}
 	if($title == ""){
 		print("lv".$liveid." Gate/WatchPage Failed...".PHP_EOL);
 		file_put_contents("log/lv".$liveid.".log", $ret);
@@ -516,6 +519,26 @@ function video_post($mediid, $userid)
 			$time = sprintf("(%d:%02d)", floor($time_sec/60), $time_sec%60);
 		} else {
 			print($mediid." VideoArray Failed...".PHP_EOL);
+		}
+	}
+	$ret = file_get_contents("http://api.ce.nicovideo.jp/nicoapi/v1/video.info?__format=json&v=".$mediid);
+	$json = json_decode($ret);
+	if($json->nicovideo_video_response->{'@status'} == "ok"){
+		$json = $json->nicovideo_video_response->video;
+		if($title == "") {
+			$title = htmlspecialchars_decode($json->title);
+			$smid = $json->id;
+			$time_sec = $json->length_in_seconds;
+			$time = sprintf("(%d:%02d)", floor($time_sec/60), $time_sec%60);
+		}
+		if($json->ppv_video == 1) {
+			$ppv = "[有料]";
+		} else {
+			$ppv = "";
+		}
+	} else {
+		print($mediid." Vita API Failed...".PHP_EOL);
+		if($title == "") {
 			$title = "？？？";
 		}
 	}
@@ -548,7 +571,7 @@ function video_post($mediid, $userid)
 					$before = "まぁ、？？？チャンネルに動画";
 				}
 			}
-			$after = "が投稿されたようですよ。";
+			$after = $ppv."が投稿されたようですよ。";
 			$url = "http://nico.ms/".$videoid;
 			$hashtag = "#nicoch #".$smid;
 			break;
