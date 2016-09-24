@@ -11,7 +11,7 @@ if(idate("H") !== 0){
 /*
 $rand = date("D");
 */
-$rand = rand(1, 48);
+$rand = rand(1, 72);
 $image = "/home/forte/bot/image/".$rand.".png";
 $data = file_get_contents($image);
 if(account_update_profile_image($mint_bot_l ,base64_encode($data))){
