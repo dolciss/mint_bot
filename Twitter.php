@@ -13,6 +13,9 @@ require_once("Secret.php");
 mb_internal_encoding("UTF-8");
 
 $http_request = new HTTP_Request2();
+$http_request->setConfig("connect_timeout", 5);
+$http_request->setConfig("timeout", 10);
+$http_request->setConfig("ssl_verify_host", false);
 $http_request->setConfig("ssl_verify_peer", false);
 $http_request->setHeader(array('User-Agent'=>'Mint_bot/1.1 (by @L_tan)'));
 $consumer_request = new HTTP_OAuth_Consumer_Request();
@@ -97,7 +100,9 @@ function twitter_access(&$consumer, $resource_url, $arg = array(), $method = "PO
 	try {
 		// Post Data Clear
 		$consumer->getOAuthConsumerRequest()->setBody("");
+print(now()."SendRequest($resource_url)-->");
 		$ret = $consumer->sendRequest($resource_url, $arg, $method);
+print("SendRequestDone.".now().PHP_EOL);
 		if($ret->getHeader("x-rate-limit-limit") !== null){
 			print(basename($resource_url).":");
 			print($ret->getHeader("x-rate-limit-remaining")."/");
@@ -121,8 +126,11 @@ function twitter_access(&$consumer, $resource_url, $arg = array(), $method = "PO
 			}
 			return false;
 		}
+	} catch(HTTP_Request2_Exception $e){
+		print("HTTP Exception(".$e->getCode()."). ".$e->getMessage().PHP_EOL);
+		return false;
 	} catch (Exception $e) {
-		print("Exception. ".$e->getMessage().PHP_EOL);
+		print("Exception(".$e->getCode()."). ".$e->getMessage().PHP_EOL);
 		return false;
 	}
 	return $result;
@@ -244,6 +252,7 @@ function create_consumer_stream(&$consumer, $callback){
 	$http_observer = new Observer_Custom($callback);
 	$http_request_stream = clone $http_request;
 	$http_request_stream->setAdapter($http_adapter);
+	$http_request_stream->setConfig("timeout", 0);
 	$http_request_stream->attach($http_observer);
 	$consumer_request_stream = new HTTP_OAuth_Consumer_Request();
 	$consumer_request_stream->accept($http_request_stream);
@@ -438,7 +447,7 @@ function tweet_message(&$consumer, $message, $reply_id = null, $wait = null)
 	if($wait === null){
 		$wait = rand(5, 10);
 	}
-	print("Tweet Message after ".$wait."sec.".PHP_EOL.$message.PHP_EOL);
+	print(now()."Tweet Message after ".$wait."sec.".PHP_EOL.$message.PHP_EOL);
 	sleep($wait);
 	
 	return statuses_update($consumer, $message, $arg);
@@ -482,5 +491,7 @@ function trim_name($screen_name, $name)
 	}
 	return $ret;
 }
-
+function now() {
+    return "[".date("H:i:s")."]";
+}
 ?>
