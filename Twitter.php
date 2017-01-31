@@ -276,6 +276,12 @@ function statuses_update(&$consumer, $status, $arg = array())
 }
 
 // Search
+function search_tweets(&$consumer, $q, $arg = array())
+{
+	$resource_url ="https://api.twitter.com/1.1/search/tweets.json";
+	$arg["q"] = $q;
+	return twitter_access($consumer, $resource_url, $arg, "GET");
+}
 // Streaming
 function user_stream(&$consumer, $arg = array(), $callback)
 {
@@ -322,6 +328,16 @@ function users_lookup(&$consumer, $arg)
 // Suggested Users
 // Favorites
 // Lists
+function lists_members(&$consumer, $arg)
+{
+	$resource_url = "https://api.twitter.com/1.1/lists/members.json";
+	return twitter_access($consumer, $resource_url, $arg, "GET");
+}
+function lists_members_create(&$consumer, $arg)
+{
+	$resource_url = "https://api.twitter.com/1.1/lists/members/create.json";
+	return twitter_access($consumer, $resource_url, $arg, "POST");
+}
 // Saved Searches
 // Places & Geo
 // Trends
