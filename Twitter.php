@@ -51,6 +51,16 @@ $apricat_bot= new HTTP_OAuth_Consumer(
 $cr_ab = clone $consumer_request;
 $apricat_bot->accept($cr_ab);
 
+// 声優プロフィール更新チェック@va_profile
+$va_bot= new HTTP_OAuth_Consumer(
+					CONSUMER_KEY_MINT_BOT,
+					CONSUMER_SECRET_MINT_BOT,
+					ACCESS_TOKEN_VA_BOT,
+					ACCESS_SECRET_VA_BOT
+					);
+$cr_ab = clone $consumer_request;
+$va_bot->accept($cr_ab);
+
 // さいたまのパチ屋@TAIZOO_bot
 $taizoo_bot = new HTTP_OAuth_Consumer(
 					CONSUMER_KEY_TAIZOO_BOT,
@@ -296,6 +306,11 @@ function friends_ids(&$consumer, $arg = array())
 	$resource_url = "https://api.twitter.com/1.1/friends/ids.json";
 	return twitter_access($consumer, $resource_url, $arg, "GET");
 }
+function friends_list(&$consumer, $arg = array())
+{
+	$resource_url = "https://api.twitter.com/1.1/friends/list.json";
+	return twitter_access($consumer, $resource_url, $arg, "GET");
+}
 function followers_ids(&$consumer, $arg = array())
 {
 	$resource_url = "https://api.twitter.com/1.1/followers/ids.json";
@@ -338,6 +353,11 @@ function lists_members_create(&$consumer, $arg)
 	$resource_url = "https://api.twitter.com/1.1/lists/members/create.json";
 	return twitter_access($consumer, $resource_url, $arg, "POST");
 }
+function lists_members_create_all(&$consumer, $arg)
+{
+	$resource_url = "https://api.twitter.com/1.1/lists/members/create_all.json";
+	return twitter_access($consumer, $resource_url, $arg, "POST");
+}
 // Saved Searches
 // Places & Geo
 // Trends
@@ -359,6 +379,14 @@ function application_rate_limit_status(&$consumer)
 {
 	$resource_url = "https://api.twitter.com/1.1/application/rate_limit_status.json";
 	return twitter_access($comsumer, $resource_url, array(), "GET");
+}
+
+// Media
+function media_upload(&$consumer, $media_base64, $arg = array())
+{
+	$resource_url = "https://upload.twitter.com/1.1/media/upload.json";
+	$arg["media_data"] = $media_base64;
+	return twitter_access($consumer, $resource_url, $arg, "POST");
 }
 
 // Url Length Load
