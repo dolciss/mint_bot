@@ -103,7 +103,7 @@ if($follower = followers_ids($mint_bot_l)){
 					$message .= "???";
 				}
 			}
-			statuses_update($mint_bot_l, $message);
+//			statuses_update($mint_bot_l, $message);
 			print($message.PHP_EOL);
 		}
 	}
