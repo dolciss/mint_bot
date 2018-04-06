@@ -38,7 +38,7 @@ if(preg_match_all($pattern, $data, $match, PREG_SET_ORDER) > 0){
 								date("(m/d H:i開場)", $opentime),
 								"が追加されたみたい？",
 								"http://nico.ms/".$liveid,
-								" @L_tan");
+								"");
 		statuses_update($mint_bot_m, $message);
 	}
 }
