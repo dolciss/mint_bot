@@ -298,6 +298,11 @@ function user_stream(&$consumer, $arg = array(), $callback)
 	$resource_url = "https://userstream.twitter.com/1.1/user.json";
 	return twitter_stream($consumer, $resource_url, $arg, $callback);
 }
+function home_timeline(&$consumer, $arg = array())
+{
+	$resource_url = "https://api.twitter.com/1.1/statuses/home_timeline.json";
+	return twitter_access($consumer, $resource_url, $arg, "GET");
+}
 
 // Direct Messages
 // Friends & Followers
@@ -491,8 +496,8 @@ function tweet_message(&$consumer, $message, $reply_id = null, $wait = null)
 	if($wait === null){
 		$wait = rand(5, 10);
 	}
-	print(now()."Tweet Message after ".$wait."sec.".PHP_EOL.$message.PHP_EOL);
-	sleep($wait);
+	print(now()."Tweet Message".PHP_EOL.$message.PHP_EOL);
+//	sleep($wait);
 	
 	return statuses_update($consumer, $message, $arg);
 }

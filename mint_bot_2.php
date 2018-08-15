@@ -3,78 +3,28 @@
 // はっかうさぎ
 
 require_once("Twitter.php");
-
-//user_stream($mint_bot_m, array("replies"=>"all"), "mint_stream");
-user_stream($mint_bot_m, array("delimited"=>"length","replies"=>"all"), "mint_stream");
-status_update($mint_bot_m, "@L_tan UserStream切れた～(´･ω･`)");
-exit();
-
-function mint_stream($data)
-{
-	static $following = array();
-	static $length = 0;
-	static $remdata = "";
-
-	if($length === 0){
-		$length = intval(strstr($data, "\n", TRUE));
+$savefile = "sinceid.txt";
+$sinceid = unserialize(file_get_contents($savefile));
+$arg = array (
+		"count" => 200,
+		"since_id" => $sinceid
+	   );
+$jsons = home_timeline($mint_bot_m, $arg);
+foreach($jsons as $json) {
+	print(date("Y/m/d H:i:s", strtotime($json->created_at)).":");
+	print($json->user->name."(@".$json->user->screen_name.")");
+	print(" via ".strip_tags($json->source).PHP_EOL);
+	print($json->text.PHP_EOL."==".$json->user->statuses_count."==> ");
+	
+	print(kiri_count($json)." ");
+	print(reply($json).PHP_EOL);
+	
+	if($sinceid < $json->id_str) {
+		$sinceid = $json->id_str;
 	}
-	$remdata .= $data;
-	if(strlen($remdata) < $length){
-		print("Short data.(".strlen($remdata)."/".$length.")".PHP_EOL);
-		return;
-	} else {
-		print("Enough data.(".strlen($remdata)."/".$length.")".PHP_EOL);
-		$length = 0;
-	}
-
-	$json = json_decode(strstr($remdata, "{"));
-	if(isset($json->text)){
-		print(date("Y/m/d H:i:s", strtotime($json->created_at)).":");
-		print($json->user->name."(@".$json->user->screen_name.")");
-		print(" via ".strip_tags($json->source).PHP_EOL);
-		print($json->text.PHP_EOL."==".$json->user->statuses_count."==> ");
-		if(!in_array($json->user->id, $following)){
-			print("Not Following.".PHP_EOL);
-		} else {
-			print(kiri_count($json)." ");
-			print(reply($json).PHP_EOL);
-		}
-	} else if(isset($json->event)){
-		print("Event:".$json->event.PHP_EOL);
-		if($json->event == "follow"){
-			print($json->source->screen_name." -> ");
-			print($json->target->screen_name);
-			if($json->source->screen_name == "Mint_bot"){
-				$following[] = $json->target->id;
-				print(" Added.");
-			}
-			print(PHP_EOL);
-		}
-	} else if(isset($json->friends)){
-		$following = $json->friends;
-		$following[] = 101409775; // Mint_bot
-		print("Friends:".count($json->friends).PHP_EOL);
-	} else if(isset($json->disconnect)){
-		print("Disconnect Stream:".$json->disconnect->code);
-		print("(".$json->disconnect->stream_name.")");
-		print(" => ".$json->disconnect->reason.PHP_EOL);
-	} else {
-		print("Unprocess Json.".PHP_EOL);
-		if(strpos($remdata, "{\"friends\":[") !== 0){
-			// friends以外は処理できなくても捨てる
-			print(trim($remdata).PHP_EOL);
-			print("Dismiss Data.".PHP_EOL);
-			$remdata = "";	
-		}
-		return;
-	}
-	$remdata = "";
-	/*
-	if(($pid = pcntl_wait($stat, WNOHANG)) > 0){
-		print("Child Process (".$pid.") Dead.".PHP_EOL);
-	}
-	*/
 }
+file_put_contents($savefile, serialize($sinceid));
+exit();
 
 // キリ番お知らせ
 function kiri_count($json)
