@@ -397,8 +397,8 @@ function live_start($liveid, $commid, $userid)
 		}
 	}
 	if($hashtag == ""){
-		if(preg_match("/data-text=\".*? #(.*?)\"/u", $ret, $match) === 1){
-			$hashtag = " #".$match[1];
+		if(preg_match("/hashTags&quot;:\[(.*?)\]/u", $ret, $match) === 1){
+			$hashtag = " #".implode(" #", preg_split("/,/", str_replace("&quot;","",$match[1])));
 		} else {
 			$hashtag = " #".$commid;
 		}
