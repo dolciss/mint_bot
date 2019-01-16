@@ -236,20 +236,22 @@ function getTicket($mail, $pass)
 
 function getAlertStatus($ticket)
 {
-	$request_url = "http://alert.nicovideo.jp/front/getalertstatus";
+//	$request_url = "http://alert.nicovideo.jp/front/getalertstatus";
+	$request_url = "https://live.nicovideo.jp/api/getalertstatus";
 	
 	try{
 		$request = new HTTP_Request2($request_url);
+		$request->setConfig("ssl_verify_peer", false);
 		$request->setMethod(HTTP_Request2::METHOD_POST);
 		$request->setHeader(array("User-Agent" => USER_AGENT));
 		$request->addPostParameter("ticket", $ticket);
 		
 		$result = $request->send();
 		$xml = simplexml_load_string($result->getBody());
-		if(!isset($xml["status"])||($xml["status"] == "fail")){
+		if(!isset($xml->attributes()->status)||($xml->attributes()->status == "fail")){
 			return false;
 		}
-		if(!isset($xml->ms)||!isset($xml->services)){
+		if(!isset($xml->ms)){
 			return false;
 		}
 		$ret = array();
@@ -258,12 +260,17 @@ function getAlertStatus($ticket)
 		}
 		$ret["addr"] = $xml->ms->addr;
 		$ret["port"] = $xml->ms->port;
+		$ret["services"]["live"] = $xml->ms->thread;
+		$ret["services"]["video"] = 1000000002;
+		$ret["services"]["seiga"] = 1000000003;
+/*
 		if(!isset($xml->services->service)){
 			return false;
 		}
 		foreach($xml->services->service as $service){
 			$ret["services"][(string)$service->id] = $service->thread;
 		}
+*/
 		return $ret;
 	} catch(HTTP_Request2_Exception $e){
 		print("HTTP_Request2_Exception:".$e->getMessage().PHP_EOL);
